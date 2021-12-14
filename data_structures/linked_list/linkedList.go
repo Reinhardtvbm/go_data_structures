@@ -21,13 +21,14 @@ func NewLinkedList() *LinkedList {
 }
 
 // return deep copy
-func Clone(other *LinkedList) *LinkedList {
+func (other *LinkedList) Clone() *LinkedList {
 	var clone *LinkedList = NewLinkedList()
 
 	var traverse *dsnode.Node = other.Head
 
 	for traverse != nil {
 		clone.Add(traverse.Val)
+		traverse = traverse.Next
 	}
 
 	return clone
@@ -42,6 +43,7 @@ func (LL *LinkedList) Add(newVal int) {
 	if LL.Head == nil {
 		LL.Head = newNode
 		LL.Tail = LL.Head
+		return
 	}
 
 	LL.Tail.Next = newNode
@@ -57,7 +59,7 @@ func (LL *LinkedList) Insert(index int, val int) {
 		} else {
 			var traverse *dsnode.Node = LL.Head
 
-			for i := 0; i < index; i++ {
+			for i := 0; i < index-1; i++ {
 				traverse = traverse.Next
 			}
 
