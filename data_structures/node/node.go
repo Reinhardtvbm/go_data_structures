@@ -1,4 +1,4 @@
-package ds
+package dsnode
 
 type Node struct {
 	Val  int
